@@ -2,11 +2,9 @@
 USER="entropyservice"
 SERVER="yourserver.tld"
 FIFO="/etc/rdcentropyservice"
-LOW_WATERMARK=3072
-TOPUP_FREQUENCY=3
 
 echo -ne "Starting rngd to stir external entropy into local entropy pool..."
-rngd -r $FIFO -W $LOW_WATERMARK -t $TOPUP_FREQUENCY &
+rngd -r $FIFO --fill-watermark=90% --feed-interval=1 --rng-timeout=0 --random-step=256 &
 echo "done."
 
 echo -ne "Connecting to remote entropy pool..."
