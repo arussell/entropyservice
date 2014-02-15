@@ -5,4 +5,3 @@ fi
 if [ -f /etc/redhat-release ]; then
   yum install rng-utils
 fi
-mknod /etc/rdcentropyservice p
