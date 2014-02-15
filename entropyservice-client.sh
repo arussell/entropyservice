@@ -1,4 +1,6 @@
 #!/bin/bash
+# original https://github.com/arussell/entropyservice
+
 USER="entropyservice"
 SERVER="yourserver.tld"
 FIFO="/etc/rdcentropyservice"
