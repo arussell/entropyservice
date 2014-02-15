@@ -1,4 +1,6 @@
 #!/bin/bash
+# original https://github.com/arussell/entropyservice
+
 if [ -f /etc/debian_version ]; then
   aptitude install rng-tools -y
 fi
