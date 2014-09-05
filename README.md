@@ -20,6 +20,13 @@ Version 2 is released under a different license, the GNU GPL v2, as Raimonds' ch
 
 Version 1 remains available under the BSD license and can be accessed here: https://github.com/arussell/entropyservice/tree/v1
 
+## Contents
+
+* [About](#about)
+* [Configuration documentation](#configuration-documentation)
+* [Limitations](#limitations)
+* [Using multiple remote entropy sources](#using-multiple-remote-entropy-sources)
+
 ## About
 
 Allow low entropy machines (eg Virtual Machines) to collect data from another host with high entropy (eg a real computer) via SSH, then stir it in to the kernel's random pool using rngd.
@@ -197,7 +204,7 @@ Repeat steps 15-21 on all additional clients.
 HINT: if you want to limit `/dev/random` read rate on server, then install pv command (http://www.ivarch.com/programs/pv.shtml) and in file `/home/myrng/.ssh/authorized_keys` replace string `command="cat /dev/random"` with string `command="cat /dev/random | pv -q -L 1024"`. This will limit `/dev/random` read rate to 1024 bytes per second per client connection
 
 
-### Limitations
+## Limitations
 
 1) on server you MUST use some kind of hardware RNG device, because performance of default `/dev/random` is very low (few random bytes per second)
 
@@ -207,7 +214,7 @@ In case clients have poor performance of built in /dev/random (for example virtu
 
 Unverified theoretical ways to mitigate this problem:
 
-#### Method A
+### Method A
 1) install on server pv command (http://www.ivarch.com/programs/pv.shtml)
 
 2) measure on server performance of `/dev/random` by running following command: `pv --average-rate < /dev/random > /dev/null`
@@ -228,13 +235,13 @@ iptables -A INPUT -m conntrack --ctstate NEW -p tcp --dport 22 -j ssh_brute_chec
 ```
 this will limit to one SSH connection per client per 24 hours
 
-##### Disadvantages of this method:
+#### Disadvantages of this method:
 
 a) you can run from client exactly one SSH connection to server, you can not for example run entropyservice and login as ordinary user
 
 b) if for some reason connection to server get lost client will be able to reconnect only when 24 hours limit pases
 
-#### Method B
+### Method B
 1) Treat each client as a first one. This mean: for each client repeat installation steps 1.-14. and for each client create different user
 
 For example: client1 - myrng1, client2 - myrng2, client3 - myrng3 ...
@@ -263,13 +270,13 @@ myrng3 - maxlogins 1
 ...
 ```
 
-##### Disadvantages of this method:
+#### Disadvantages of this method:
 
 a) more complex installation
 
 b) may not work with DropBear SSH server
 
-### Using multiple remote entropy sources
+## Using multiple remote entropy sources
 
 It is possible to create more than one instance of this script to support multiple servers. After doing the other configuration, do the following:
 ```
