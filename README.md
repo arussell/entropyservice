@@ -1,6 +1,7 @@
 # entropyservice
 
 Version 1 copyright (c) 2013-2014 Aaron B. Russell <aaron@unadopted.co.uk>
+
 Version 2 copyright (c) 2014 Raimonds Cicans <ray@apollo.lv>
 
 Maintained by Aaron B. Russell <aaron@unadopted.co.uk>
