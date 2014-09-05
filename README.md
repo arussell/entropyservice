@@ -31,11 +31,7 @@ Version 1 remains available under the BSD license and can be accessed here: http
 
 Allow low entropy machines (eg Virtual Machines) to collect data from another host with high entropy (eg a real computer) via SSH, then stir it in to the kernel's random pool using rngd.
 
-Uses a FIFO on the client to prevent draining the host's entropy more than necessary.
-
-Inspired by the technique used by "starlight" on LWN: https://lwn.net/Articles/567731/
-
-This solution isn't perfect. Pull requests, issues etc are welcomed.
+Originally inspired by the technique used by "starlight" on LWN: https://lwn.net/Articles/567731/
 
 ## Configuration documentation
 
