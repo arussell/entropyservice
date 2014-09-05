@@ -1,0 +1,24 @@
+#!/sbin/runscript
+# Copyright (c) 2014 Raimonds Cicans <ray@apollo.lv>
+# Distributed under the terms of the GNU General Public License v2
+
+PIDFILE=/var/run/${SVCNAME}.pid
+CMD=/root/entropyservice-client.sh
+
+depend() {
+  need net
+}
+
+start() {
+  ebegin "Starting ${SVCNAME}"
+  start-stop-daemon --start --make-pidfile --pidfile "${PIDFILE}" \
+    --background --quiet --wait ${WAIT-1000} --exec ${CMD} -- \
+    ${USER} ${HOST} ${PORT-22} ${PKEY-"~/.ssh/$USER"}
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping ${SVCNAME}"
+  start-stop-daemon --stop --pidfile "${PIDFILE}" --quiet --exec ${CMD}
+  eend $?
+}

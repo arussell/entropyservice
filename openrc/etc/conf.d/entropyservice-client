@@ -1,0 +1,17 @@
+# Copyright (c) 2014 Raimonds Cicans <ray@apollo.lv>
+# Distributed under the terms of the GNU General Public License v2
+
+# User name on destination SSH server
+USER=myrng
+
+# Hostname of destination SSH server
+HOST=hostname
+
+# SSH port on destination SSH server
+#PORT=22
+
+# User's private SSH key
+#PKEY=/root/.ssh/myrng
+
+# How long to wait while connection get established (milliseconds)
+#WAIT=1000
